@@ -1,14 +1,18 @@
 {
-  "name": "tisdagsgolfen-api",
-  "version": "1.0.0",
+  "name": "tisdagsgolfen",
+  "version": "0.0.1",
   "main": "index.js",
+  "author": "Kim Fransman <kim.fransman@gmail.com>",
   "license": "MIT",
-  "dependencies": {
-    "graphql": "^14.0.0",
-    "graphql-yoga": "^1.16.2",
-    "prisma-binding": "^2.1.5"
-  },
   "scripts": {
-    "deploy": "cd prisma && prisma deploy && cd .."
-  }
+    "build:web": "cd web && yarn build",
+    "dev:api": "cd api && yarn dev",
+    "dev:web": "cd web && yarn dev",
+    "dev": "npm-run-all --parallel dev:*",
+    "deploy:prisma": "cd api/prisma && prisma deploy"
+  },
+  "workspaces": [
+    "api",
+    "web"
+  ]
 }

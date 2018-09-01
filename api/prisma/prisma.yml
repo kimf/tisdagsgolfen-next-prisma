@@ -4,3 +4,4 @@ datamodel: datamodel.graphql
 hooks:
   post-deploy:
     - graphql get-schema --endpoint ${self:endpoint} --output src/generated/prisma.graphql --no-all
+    - graphql codegen
