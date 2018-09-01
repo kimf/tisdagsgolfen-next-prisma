@@ -36,12 +36,12 @@ const resolvers = {
 // }
 
 const server = new GraphQLServer({
-  typeDefs: "./schema.graphql",
+  typeDefs: "./src/schema.graphql",
   resolvers,
   context: req => ({
     ...req,
     db: new Prisma({
-      typeDefs: "prisma.graphql",
+      typeDefs: "./src/generated/prisma.graphql",
       endpoint: "https://eu1.prisma.sh/kim-fransman-4c718b/tisdagsgolfen/dev"
     })
   })
