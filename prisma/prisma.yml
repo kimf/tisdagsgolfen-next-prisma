@@ -1,0 +1,6 @@
+endpoint: https://eu1.prisma.sh/kim-fransman-4c718b/tisdagsgolfen/dev
+datamodel: datamodel.graphql
+
+hooks:
+  post-deploy:
+    - graphql get-schema --endpoint ${self:endpoint} --output src/generated/prisma.graphql --no-all
