@@ -4,6 +4,7 @@
   "main": "index.js",
   "author": "Kim Fransman <kim.fransman@gmail.com>",
   "license": "MIT",
+  "private": true,
   "scripts": {
     "build:web": "cd web && yarn build",
     "dev:api": "cd api && yarn dev",
@@ -14,5 +15,8 @@
   "workspaces": [
     "api",
     "web"
-  ]
+  ],
+  "devDependencies": {
+    "npm-run-all": "^4.1.3"
+  }
 }

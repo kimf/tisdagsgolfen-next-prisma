@@ -1,5 +1,5 @@
 # source: https://eu1.prisma.sh/kim-fransman-4c718b/tisdagsgolfen/dev
-# timestamp: Sat Sep 01 2018 17:35:32 GMT+0200 (Central European Summer Time)
+# timestamp: Sun Sep 02 2018 00:30:46 GMT+0200 (Central European Summer Time)
 
 type AggregateUser {
   count: Int!
