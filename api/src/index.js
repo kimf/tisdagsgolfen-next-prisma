@@ -1,33 +1,15 @@
 const { GraphQLServer } = require("graphql-yoga");
-const { Prisma } = require("prisma-binding");
+const { Prisma, forwardTo } = require("prisma-binding");
 
 const resolvers = {
   Query: {
-    user(parent, args, context, info) {
-      return context.db.query.user({ where: { id: args.userId } }, info);
-    },
-    userByName(parent, args, context, info) {
-      return context.db.query.users(
-        {
-          where: {
-            name: args.name
-          }
-        },
-        info
-      );
-    }
+    courses: forwardTo("db"),
+    players: forwardTo("db"),
+    scoringSessions: forwardTo("db")
   },
   Mutation: {
-    createUser(parent, args, context, info) {
-      return context.db.mutation.createUser(
-        {
-          data: {
-            name: args.name
-          }
-        },
-        info
-      );
-    }
+    createScoringSession: forwardTo("db"),
+    updateScoringSession: forwardTo("db")
   }
 };
 

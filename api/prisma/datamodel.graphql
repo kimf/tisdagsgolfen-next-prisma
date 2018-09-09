@@ -1,4 +1,33 @@
-type User {
+type Player {
   id: ID! @unique
   name: String!
+}
+
+type Team {
+  id: ID! @unique
+  players: [Player!]!
+}
+
+type Course {
+  id: ID! @unique
+  club: String!
+  name: String!
+  holes: [Hole!]!
+}
+
+type Hole {
+  id: ID! @unique
+  course: Course!
+  index: Int!
+  number: Int!
+  par: Int!
+}
+
+type ScoringSession {
+  id: ID! @unique
+  course: Course!
+  currentHole: Int! @default(value: 1)
+  players: [Player!]!
+  teams: [Team!]!
+  status: String! @default(value: "live")
 }
