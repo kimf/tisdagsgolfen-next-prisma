@@ -4,9 +4,16 @@ import App from "../components/App";
 
 export default () => (
   <App>
-    <h1>Tisdagsgolfen 2019</h1>
-    <Link href={{ pathname: "/spela" }}>
-      <a>Spela golf</a>
-    </Link>
+    <header className="header main">
+      <h1>Tisdagsgolfen 2019</h1>
+      <div className="actions">
+        <Link href={{ pathname: "/play" }}>
+          <a>SPELA</a>
+        </Link>
+      </div>
+    </header>
+    <div>
+      <p>Här kommer alltså ledartavlan och lite annat skoj vara :D</p>
+    </div>
   </App>
 );

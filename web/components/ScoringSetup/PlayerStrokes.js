@@ -1,7 +1,7 @@
 import { Component } from "react";
 import BottomButton from "../shared/BottomButton";
 
-class GameSettings extends Component {
+class PlayerStrokes extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -26,9 +26,6 @@ class GameSettings extends Component {
     return (
       <div>
         <h3>{course.name}</h3>
-        <input type="checkbox" /> Lagtävling?
-        <hr />
-        <input type="checkbox" /> Kör slag istället för poäng?
         <h3>Spelare</h3>
         <table>
           <thead>
@@ -71,4 +68,4 @@ class GameSettings extends Component {
   }
 }
 
-export default GameSettings;
+export default PlayerStrokes;

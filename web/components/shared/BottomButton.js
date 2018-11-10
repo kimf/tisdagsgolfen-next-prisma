@@ -1,6 +1,6 @@
 const BottomButton = ({ text, onClick, disabled }) => (
   <button
-    style={{ backgroundColor: disabled ? "#ccc" : "#0c5" }}
+    style={{ backgroundColor: disabled ? "#ccc" : "#10652E" }}
     onClick={disabled ? null : onClick}
     disabled={disabled}
   >

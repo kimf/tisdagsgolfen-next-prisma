@@ -1,4 +1,5 @@
-import { ApolloClient, InMemoryCache, HttpLink } from "apollo-boost";
+import ApolloClient, { InMemoryCache } from "apollo-boost";
+import { persistCache } from "apollo-cache-persist";
 import fetch from "isomorphic-unfetch";
 
 let apolloClient = null;
@@ -10,15 +11,25 @@ if (!process.browser) {
   global.fetch = fetch;
 }
 
-function create(initialState) {
+function create(/*initialState*/) {
+  const cache = new InMemoryCache();
+
+  process.browser &&
+    persistCache({
+      cache,
+      storage: window.localStorage
+    });
+
   return new ApolloClient({
-    connectToDevTools: process.browser,
-    ssrMode: !process.browser, // Disables forceFetch on the server (so queries are only run once)
-    link: new HttpLink({
-      uri: URI,
-      credentials: "same-origin" // Additional fetch() options like `credentials` or `headers`
-    }),
-    cache: new InMemoryCache().restore(initialState || {})
+    cache,
+    uri: URI,
+    clientState: {
+      defaults: {
+        courseId: null,
+        teamEvent: false,
+        strokesEvent: false
+      }
+    }
   });
 }
 

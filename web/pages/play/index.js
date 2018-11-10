@@ -1,9 +1,8 @@
-import { Component } from "react";
-import ScoringSetup from "../components/ScoringSetup";
-import App from "../components/App";
+import React, { Component } from "react";
 
-import Code from "../components/Code";
-import GameSettings from "../components/ScoringSetup/GameSettings";
+import App from "../../components/App";
+import ScoringSetup from "../../components/ScoringSetup/ScoringSetup";
+import Code from "../../components/Code";
 
 const CODE = "1234";
 
@@ -12,6 +11,8 @@ class Play extends Component {
     hasCheckedForCode: false,
     hasEnteredCode: false,
     course: null,
+    teamEvent: false,
+    strokesEvent: false,
     players: []
   };
 
@@ -34,12 +35,8 @@ class Play extends Component {
     }
   };
 
-  setCourseAndPlayers = (course, players) => {
-    this.setState(state => ({ ...state, course, players }));
-  };
-
   render() {
-    const { hasCheckedForCode, hasEnteredCode, course, players } = this.state;
+    const { hasCheckedForCode, hasEnteredCode } = this.state;
 
     if (!hasCheckedForCode) {
       return null;
@@ -47,16 +44,13 @@ class Play extends Component {
 
     return (
       <App>
+        <header className="header secondary">
+          <h1>Spela golf</h1>
+        </header>
         {!hasEnteredCode ? (
           <Code enterCode={this.enterCode} />
         ) : (
-          <div>
-            {course && players.length > 0 ? (
-              <GameSettings course={course} players={players} />
-            ) : (
-              <ScoringSetup nextStep={this.setCourseAndPlayers} />
-            )}
-          </div>
+          <ScoringSetup />
         )}
       </App>
     );

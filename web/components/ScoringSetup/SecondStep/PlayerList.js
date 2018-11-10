@@ -1,3 +1,22 @@
+import { compose, withHandlers } from "recompose";
+
+const enhance = compose(
+  withHandlers({
+    togglePlayer: props => (player, shouldRemove) => {
+      const { selectedPlayers } = props;
+      if (shouldRemove) {
+        const index = selectedPlayers.findIndex(sp => sp.id === player.id);
+        if (index !== -1) {
+          selectedPlayers.splice(index, 1);
+        }
+        props.setData({ selectedPlayers });
+      } else {
+        props.setData({ selectedPlayers: [...selectedPlayers, player] });
+      }
+    }
+  })
+);
+
 const PlayerList = ({ players, selectedPlayers, togglePlayer }) => (
   <div>
     <h3>Vilka spelare för du för?</h3>
@@ -13,7 +32,7 @@ const PlayerList = ({ players, selectedPlayers, togglePlayer }) => (
             key={player.id}
             onClick={() => togglePlayer(player, isSelected)}
           >
-            {isSelected ? "🏌️" : null}
+            {isSelected && "🏌️"}
             {player.name}
           </li>
         );
@@ -22,4 +41,4 @@ const PlayerList = ({ players, selectedPlayers, togglePlayer }) => (
   </div>
 );
 
-export default PlayerList;
+export default enhance(PlayerList);
